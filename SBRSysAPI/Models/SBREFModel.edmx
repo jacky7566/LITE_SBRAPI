@@ -1,0 +1,558 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SBRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBL_SBR_ATTACH">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SBR_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AttachType" Type="nvarchar" MaxLength="20" />
+          <Property Name="FileRealPath" Type="nvarchar" MaxLength="500" />
+          <Property Name="FileOrigName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Creation_Date" Type="datetime" Nullable="false" />
+          <Property Name="Last_Updated_Date" Type="datetime" Nullable="false" />
+          <Property Name="Attribute" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Created_By" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdated_By" Type="nvarchar" MaxLength="50" />
+          <Property Name="FileTempName" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="TBL_SBR_ATTACH_ATTR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="HeaderId" Type="uniqueidentifier" />
+          <Property Name="AttrType" Type="nvarchar" MaxLength="20" />
+          <Property Name="AttrKey" Type="nvarchar" MaxLength="50" />
+          <Property Name="AttrVal" Type="nvarchar(max)" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Creation_Date" Type="datetime" Nullable="false" />
+          <Property Name="Last_Updated_Date" Type="datetime" Nullable="false" />
+          <Property Name="Attribute" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Created_By" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdated_By" Type="nvarchar" MaxLength="50" />
+          <Property Name="SBR_Id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_SBR_Dynamic_ColumnLookup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DCType" Type="nvarchar" MaxLength="50" />
+          <Property Name="GroupSequence" Type="nvarchar" MaxLength="20" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="200" />
+          <Property Name="LabelSequence" Type="nvarchar" MaxLength="20" />
+          <Property Name="LabelName" Type="nvarchar" MaxLength="200" />
+          <Property Name="ComponentType" Type="nvarchar" MaxLength="50" />
+          <Property Name="DefaultValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="Direction" Type="nvarchar" MaxLength="10" />
+          <Property Name="IsShow" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="IsEditable" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Version" Type="nvarchar" MaxLength="20" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Creation_Date" Type="datetime" Nullable="false" />
+          <Property Name="Last_Updated_Date" Type="datetime" Nullable="false" />
+          <Property Name="Attribute" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Created_By" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdated_By" Type="nvarchar" MaxLength="50" />
+          <Property Name="RelationGroupName" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="TBL_SBR_Dynamic_ColumnResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestFlowId" Type="uniqueidentifier" />
+          <Property Name="DynamicColumnLookupId" Type="uniqueidentifier" />
+          <Property Name="Value" Type="nvarchar" MaxLength="100" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Creation_Date" Type="datetime" Nullable="false" />
+          <Property Name="Last_Updated_Date" Type="datetime" Nullable="false" />
+          <Property Name="Attribute" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Created_By" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdated_By" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_SBR_Lookup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LkType" Type="nvarchar" MaxLength="100" />
+          <Property Name="LkKey" Type="nvarchar" MaxLength="100" />
+          <Property Name="LkValue" Type="nvarchar" MaxLength="500" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Creation_Date" Type="datetime" Nullable="false" />
+          <Property Name="Last_Updated_Date" Type="datetime" Nullable="false" />
+          <Property Name="Attribute" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Created_By" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdated_By" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_SBR_RD_Header">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SBR_Header_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SBR_Num" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Version" Type="int" Nullable="false" />
+          <Property Name="Pulse_Width" Type="decimal" Precision="9" Scale="5" Nullable="false" />
+          <Property Name="Duty_Cycle" Type="decimal" Precision="9" Scale="5" Nullable="false" />
+          <Property Name="Wafer_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Requestor" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Creation_Date" Type="datetime" Nullable="false" />
+          <Property Name="Last_Updated_Date" Type="datetime" Nullable="false" />
+          <Property Name="Attribute" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Created_By" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdated_By" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ApprComment" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CostAmt" Type="decimal" Precision="20" Scale="10" />
+          <Property Name="LotType" Type="nvarchar" MaxLength="50" />
+          <Property Name="TesterType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Released_Status" Type="int" />
+          <Property Name="Released_Comments" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Released_Date" Type="datetime" />
+          <Property Name="Released_By" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_SBR_TestFlow">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SBR_Header_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SBR_RD_Header_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Seq" Type="int" Nullable="false" />
+          <Property Name="TestType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Temperature" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sampling_Rate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Iop" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LogFile" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="EmitCount" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="EmitMap" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TpDefMap" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TestMap" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TesterNum" Type="int" Nullable="false" />
+          <Property Name="WaferNum" Type="int" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="1000" />
+          <Property Name="TestTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Creation_Date" Type="datetime" Nullable="false" />
+          <Property Name="Last_Updated_Date" Type="datetime" Nullable="false" />
+          <Property Name="Created_By" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdated_By" Type="nvarchar" MaxLength="50" />
+          <Property Name="Attribute" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IsIRTest" Type="bit" />
+        </EntityType>
+        <EntityType Name="TBL_SBR_TestFlow_Steps">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Testflow_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SBR_RD_Header_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Step" Type="int" />
+          <Property Name="Current_mA" Type="nvarchar" MaxLength="50" />
+          <Property Name="PDRange" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Creation_Date" Type="datetime" Nullable="false" />
+          <Property Name="Last_Updated_Date" Type="datetime" Nullable="false" />
+          <Property Name="Created_By" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdated_By" Type="nvarchar" MaxLength="50" />
+          <Property Name="Attribute" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityContainer Name="SBRModelStoreContainer">
+          <EntitySet Name="TBL_SBR_ATTACH" EntityType="Self.TBL_SBR_ATTACH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SBR_ATTACH_ATTR" EntityType="Self.TBL_SBR_ATTACH_ATTR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SBR_Dynamic_ColumnLookup" EntityType="Self.TBL_SBR_Dynamic_ColumnLookup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SBR_Dynamic_ColumnResult" EntityType="Self.TBL_SBR_Dynamic_ColumnResult" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SBR_Lookup" EntityType="Self.TBL_SBR_Lookup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SBR_RD_Header" EntityType="Self.TBL_SBR_RD_Header" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SBR_TestFlow" EntityType="Self.TBL_SBR_TestFlow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_SBR_TestFlow_Steps" EntityType="Self.TBL_SBR_TestFlow_Steps" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SBRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBL_SBR_ATTACH">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="SBR_Id" Type="Guid" Nullable="false" />
+          <Property Name="AttachType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FileRealPath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileOrigName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_Updated_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Attribute" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FileTempName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TBL_SBR_ATTACH_ATTR">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="HeaderId" Type="Guid" />
+          <Property Name="AttrType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AttrKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AttrVal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_Updated_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Attribute" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SBR_Id" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TBL_SBR_Lookup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="LkType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LkKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LkValue" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_Updated_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Attribute" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="SBREntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBL_SBR_ATTACH" EntityType="Self.TBL_SBR_ATTACH" />
+          <EntitySet Name="TBL_SBR_ATTACH_ATTR" EntityType="Self.TBL_SBR_ATTACH_ATTR" />
+          <EntitySet Name="TBL_SBR_Lookup" EntityType="Self.TBL_SBR_Lookup" />
+          <EntitySet Name="TBL_SBR_TestFlow" EntityType="SBRModel.TBL_SBR_TestFlow" />
+          <EntitySet Name="TBL_SBR_RD_Header" EntityType="SBRModel.TBL_SBR_RD_Header" />
+          <EntitySet Name="TBL_SBR_Dynamic_ColumnLookup" EntityType="SBRModel.TBL_SBR_Dynamic_ColumnLookup" />
+          <EntitySet Name="TBL_SBR_Dynamic_ColumnResult" EntityType="SBRModel.TBL_SBR_Dynamic_ColumnResult" />
+          <EntitySet Name="TBL_SBR_TestFlow_Steps" EntityType="SBRModel.TBL_SBR_TestFlow_Steps" />
+        </EntityContainer>
+        <EntityType Name="TBL_SBR_TestFlow">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="SBR_Header_Id" Type="Guid" Nullable="false" />
+          <Property Name="SBR_RD_Header_Id" Type="Guid" Nullable="false" />
+          <Property Name="Seq" Type="Int32" Nullable="false" />
+          <Property Name="TestType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Temperature" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sampling_Rate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Iop" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LogFile" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EmitCount" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EmitMap" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TpDefMap" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TestMap" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TesterNum" Type="Int32" Nullable="false" />
+          <Property Name="WaferNum" Type="Int32" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="TestTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_Updated_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Attribute" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IsIRTest" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="TBL_SBR_RD_Header">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="SBR_Header_Id" Type="Guid" Nullable="false" />
+          <Property Name="SBR_Num" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Version" Type="Int32" Nullable="false" />
+          <Property Name="Pulse_Width" Type="Decimal" Nullable="false" Precision="9" Scale="5" />
+          <Property Name="Duty_Cycle" Type="Decimal" Nullable="false" Precision="9" Scale="5" />
+          <Property Name="Wafer_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Requestor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_Updated_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Attribute" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ApprComment" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CostAmt" Type="Decimal" Precision="20" Scale="10" />
+          <Property Name="LotType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TesterType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Released_Status" Type="Int32" />
+          <Property Name="Released_Comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Released_Date" Type="DateTime" Precision="3" />
+          <Property Name="Released_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TBL_SBR_Dynamic_ColumnLookup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="DCType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GroupSequence" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="GroupName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LabelSequence" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LabelName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ComponentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Direction" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IsShow" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IsEditable" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Version" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_Updated_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Attribute" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RelationGroupName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TBL_SBR_Dynamic_ColumnResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="TestFlowId" Type="Guid" />
+          <Property Name="DynamicColumnLookupId" Type="Guid" />
+          <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_Updated_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Attribute" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TBL_SBR_TestFlow_Steps">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Testflow_Id" Type="Guid" Nullable="false" />
+          <Property Name="SBR_RD_Header_Id" Type="Guid" Nullable="false" />
+          <Property Name="Step" Type="Int32" />
+          <Property Name="Current_mA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PDRange" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Creation_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_Updated_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Attribute" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SBRModelStoreContainer" CdmEntityContainer="SBREntities">
+          <EntitySetMapping Name="TBL_SBR_ATTACH">
+            <EntityTypeMapping TypeName="SBRModel.TBL_SBR_ATTACH">
+              <MappingFragment StoreEntitySet="TBL_SBR_ATTACH">
+                <ScalarProperty Name="FileTempName" ColumnName="FileTempName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SBR_Id" ColumnName="SBR_Id" />
+                <ScalarProperty Name="AttachType" ColumnName="AttachType" />
+                <ScalarProperty Name="FileRealPath" ColumnName="FileRealPath" />
+                <ScalarProperty Name="FileOrigName" ColumnName="FileOrigName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+                <ScalarProperty Name="Last_Updated_Date" ColumnName="Last_Updated_Date" />
+                <ScalarProperty Name="Attribute" ColumnName="Attribute" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="LastUpdated_By" ColumnName="LastUpdated_By" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SBR_ATTACH_ATTR">
+            <EntityTypeMapping TypeName="SBRModel.TBL_SBR_ATTACH_ATTR">
+              <MappingFragment StoreEntitySet="TBL_SBR_ATTACH_ATTR">
+                <ScalarProperty Name="SBR_Id" ColumnName="SBR_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HeaderId" ColumnName="HeaderId" />
+                <ScalarProperty Name="AttrType" ColumnName="AttrType" />
+                <ScalarProperty Name="AttrKey" ColumnName="AttrKey" />
+                <ScalarProperty Name="AttrVal" ColumnName="AttrVal" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+                <ScalarProperty Name="Last_Updated_Date" ColumnName="Last_Updated_Date" />
+                <ScalarProperty Name="Attribute" ColumnName="Attribute" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="LastUpdated_By" ColumnName="LastUpdated_By" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SBR_Lookup">
+            <EntityTypeMapping TypeName="SBRModel.TBL_SBR_Lookup">
+              <MappingFragment StoreEntitySet="TBL_SBR_Lookup">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LkType" ColumnName="LkType" />
+                <ScalarProperty Name="LkKey" ColumnName="LkKey" />
+                <ScalarProperty Name="LkValue" ColumnName="LkValue" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+                <ScalarProperty Name="Last_Updated_Date" ColumnName="Last_Updated_Date" />
+                <ScalarProperty Name="Attribute" ColumnName="Attribute" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="LastUpdated_By" ColumnName="LastUpdated_By" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SBR_TestFlow">
+            <EntityTypeMapping TypeName="SBRModel.TBL_SBR_TestFlow">
+              <MappingFragment StoreEntitySet="TBL_SBR_TestFlow">
+                <ScalarProperty Name="IsIRTest" ColumnName="IsIRTest" />
+                <ScalarProperty Name="Attribute" ColumnName="Attribute" />
+                <ScalarProperty Name="LastUpdated_By" ColumnName="LastUpdated_By" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Last_Updated_Date" ColumnName="Last_Updated_Date" />
+                <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TestTime" ColumnName="TestTime" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="WaferNum" ColumnName="WaferNum" />
+                <ScalarProperty Name="TesterNum" ColumnName="TesterNum" />
+                <ScalarProperty Name="TestMap" ColumnName="TestMap" />
+                <ScalarProperty Name="TpDefMap" ColumnName="TpDefMap" />
+                <ScalarProperty Name="EmitMap" ColumnName="EmitMap" />
+                <ScalarProperty Name="EmitCount" ColumnName="EmitCount" />
+                <ScalarProperty Name="LogFile" ColumnName="LogFile" />
+                <ScalarProperty Name="Iop" ColumnName="Iop" />
+                <ScalarProperty Name="Sampling_Rate" ColumnName="Sampling_Rate" />
+                <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+                <ScalarProperty Name="TestType" ColumnName="TestType" />
+                <ScalarProperty Name="Seq" ColumnName="Seq" />
+                <ScalarProperty Name="SBR_RD_Header_Id" ColumnName="SBR_RD_Header_Id" />
+                <ScalarProperty Name="SBR_Header_Id" ColumnName="SBR_Header_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SBR_RD_Header">
+            <EntityTypeMapping TypeName="SBRModel.TBL_SBR_RD_Header">
+              <MappingFragment StoreEntitySet="TBL_SBR_RD_Header">
+                <ScalarProperty Name="Released_By" ColumnName="Released_By" />
+                <ScalarProperty Name="Released_Date" ColumnName="Released_Date" />
+                <ScalarProperty Name="Released_Comments" ColumnName="Released_Comments" />
+                <ScalarProperty Name="Released_Status" ColumnName="Released_Status" />
+                <ScalarProperty Name="TesterType" ColumnName="TesterType" />
+                <ScalarProperty Name="LotType" ColumnName="LotType" />
+                <ScalarProperty Name="CostAmt" ColumnName="CostAmt" />
+                <ScalarProperty Name="ApprComment" ColumnName="ApprComment" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="LastUpdated_By" ColumnName="LastUpdated_By" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Attribute" ColumnName="Attribute" />
+                <ScalarProperty Name="Last_Updated_Date" ColumnName="Last_Updated_Date" />
+                <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+                <ScalarProperty Name="Requestor" ColumnName="Requestor" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Wafer_ID" ColumnName="Wafer_ID" />
+                <ScalarProperty Name="Duty_Cycle" ColumnName="Duty_Cycle" />
+                <ScalarProperty Name="Pulse_Width" ColumnName="Pulse_Width" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="SBR_Num" ColumnName="SBR_Num" />
+                <ScalarProperty Name="SBR_Header_Id" ColumnName="SBR_Header_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SBR_Dynamic_ColumnLookup">
+            <EntityTypeMapping TypeName="SBRModel.TBL_SBR_Dynamic_ColumnLookup">
+              <MappingFragment StoreEntitySet="TBL_SBR_Dynamic_ColumnLookup">
+                <ScalarProperty Name="RelationGroupName" ColumnName="RelationGroupName" />
+                <ScalarProperty Name="LastUpdated_By" ColumnName="LastUpdated_By" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Attribute" ColumnName="Attribute" />
+                <ScalarProperty Name="Last_Updated_Date" ColumnName="Last_Updated_Date" />
+                <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsEditable" ColumnName="IsEditable" />
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+                <ScalarProperty Name="DefaultValue" ColumnName="DefaultValue" />
+                <ScalarProperty Name="ComponentType" ColumnName="ComponentType" />
+                <ScalarProperty Name="LabelName" ColumnName="LabelName" />
+                <ScalarProperty Name="LabelSequence" ColumnName="LabelSequence" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupSequence" ColumnName="GroupSequence" />
+                <ScalarProperty Name="DCType" ColumnName="DCType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SBR_Dynamic_ColumnResult">
+            <EntityTypeMapping TypeName="SBRModel.TBL_SBR_Dynamic_ColumnResult">
+              <MappingFragment StoreEntitySet="TBL_SBR_Dynamic_ColumnResult">
+                <ScalarProperty Name="LastUpdated_By" ColumnName="LastUpdated_By" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Attribute" ColumnName="Attribute" />
+                <ScalarProperty Name="Last_Updated_Date" ColumnName="Last_Updated_Date" />
+                <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="DynamicColumnLookupId" ColumnName="DynamicColumnLookupId" />
+                <ScalarProperty Name="TestFlowId" ColumnName="TestFlowId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_SBR_TestFlow_Steps">
+            <EntityTypeMapping TypeName="SBRModel.TBL_SBR_TestFlow_Steps">
+              <MappingFragment StoreEntitySet="TBL_SBR_TestFlow_Steps">
+                <ScalarProperty Name="Attribute" ColumnName="Attribute" />
+                <ScalarProperty Name="LastUpdated_By" ColumnName="LastUpdated_By" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Last_Updated_Date" ColumnName="Last_Updated_Date" />
+                <ScalarProperty Name="Creation_Date" ColumnName="Creation_Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PDRange" ColumnName="PDRange" />
+                <ScalarProperty Name="Current_mA" ColumnName="Current_mA" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="SBR_RD_Header_Id" ColumnName="SBR_RD_Header_Id" />
+                <ScalarProperty Name="Testflow_Id" ColumnName="Testflow_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
