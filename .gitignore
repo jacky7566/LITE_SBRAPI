@@ -50,3 +50,5 @@ Thumbs.db
 
 /SBRSysAPI/bin
 /SBRSysAPI/obj
+/packages
+/SBRSysAPI/appLog
